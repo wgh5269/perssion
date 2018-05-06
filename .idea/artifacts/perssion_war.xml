@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="perssion:war">
+    <output-path>$PROJECT_DIR$/../perssion/target</output-path>
+    <root id="archive" name="perssion.war">
+      <element id="artifact" artifact-name="perssion:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="920e5dc4-9568-405a-8b9b-16d8e7e1092a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/Dto/AclDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/Dto/AclModuleLevelDto.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/controller/SysAclModuleController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/service/SysAclModuleService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/service/SysAclService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../perssion/src/main/webapp/WEB-INF/views/acl.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../perssion/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/dao/SysAclMapper.java" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/dao/SysAclMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/dao/SysAclModuleMapper.java" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/dao/SysAclModuleMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/model/SysAcl.java" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/model/SysAcl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/model/SysAclModule.java" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/model/SysAclModule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/service/SysTreeService.java" afterPath="$PROJECT_DIR$/../perssion/src/main/java/com/wgh/service/SysTreeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/resources/mapper/SysAclMapper.xml" afterPath="$PROJECT_DIR$/../perssion/src/main/resources/mapper/SysAclMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/src/main/resources/mapper/SysAclModuleMapper.xml" afterPath="$PROJECT_DIR$/../perssion/src/main/resources/mapper/SysAclModuleMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/../perssion/out/" />
     <ignored path="$PROJECT_DIR$/../perssion/target/" />
@@ -814,7 +813,7 @@
       <workItem from="1525157140413" duration="7831000" />
       <workItem from="1525238133806" duration="2848000" />
       <workItem from="1525603185950" duration="2941000" />
-      <workItem from="1525776563065" duration="2576000" />
+      <workItem from="1525776563065" duration="2676000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1525606261882</created>
@@ -837,11 +836,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525778983970</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="新加角色模板功能">
+      <created>1525779169210</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1525779169210</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99177000" />
+    <option name="totallyTimeSpent" value="99277000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -857,7 +863,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21440823" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15951973" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -878,7 +884,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530304" sideWeight="0.45797598" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30530304" sideWeight="0.45797598" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30530304" sideWeight="0.542024" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -901,7 +907,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="新加角色模板参数" />
-    <option name="LAST_COMMIT_MESSAGE" value="新加角色模板参数" />
+    <MESSAGE value="新加角色模板功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="新加角色模板功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

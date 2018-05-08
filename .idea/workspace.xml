@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="920e5dc4-9568-405a-8b9b-16d8e7e1092a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../perssion/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../perssion/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="920e5dc4-9568-405a-8b9b-16d8e7e1092a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/../perssion/out/" />
     <ignored path="$PROJECT_DIR$/../perssion/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -893,7 +891,7 @@
       <workItem from="1525157140413" duration="7831000" />
       <workItem from="1525238133806" duration="2848000" />
       <workItem from="1525603185950" duration="2941000" />
-      <workItem from="1525776563065" duration="3591000" />
+      <workItem from="1525776563065" duration="3612000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1525606261882</created>
@@ -944,11 +942,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525780008797</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="新加角色模板功能">
+      <created>1525780168052</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1525780168052</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100192000" />
+    <option name="totallyTimeSpent" value="100213000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

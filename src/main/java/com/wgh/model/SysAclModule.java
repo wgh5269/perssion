@@ -1,7 +1,11 @@
 package com.wgh.model;
 
-import java.util.Date;
+import lombok.*;
 
+import java.util.Date;
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SysAclModule {
     private Integer id;
 

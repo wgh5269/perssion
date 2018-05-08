@@ -3,8 +3,14 @@ package com.wgh.service;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import com.wgh.Dto.AclDto;
+import com.wgh.Dto.AclModuleLevelDto;
 import com.wgh.Dto.DeptLevelDto;
+import com.wgh.dao.SysAclMapper;
+import com.wgh.dao.SysAclModuleMapper;
 import com.wgh.dao.SysDeptMapper;
+import com.wgh.model.SysAcl;
+import com.wgh.model.SysAclModule;
 import com.wgh.model.SysDept;
 import com.wgh.util.Levelutil;
 import org.apache.commons.collections.CollectionUtils;
@@ -23,7 +29,72 @@ import java.util.List;
 public class SysTreeService {
     @Resource
     private SysDeptMapper sysDeptMapper;
+    @Resource
+    private SysAclModuleMapper sysAclModuleMapper;
+    @Resource
+    private SysAclMapper sysAclMapper;
 
+
+
+    //权限树：
+    public List<AclModuleLevelDto> aclListToTree(List<AclDto> aclDtoList) {
+        if (CollectionUtils.isEmpty(aclDtoList)) {
+            return Lists.newArrayList();
+        }
+        List<AclModuleLevelDto> aclModuleLevelList = aclModuleTree();
+
+        Multimap<Integer, AclDto> moduleIdAclMap = ArrayListMultimap.create();
+        for(AclDto acl : aclDtoList) {
+            if (acl.getStatus() == 1) {
+                moduleIdAclMap.put(acl.getAclModuleId(), acl);
+            }
+        }
+        return aclModuleLevelList;
+    }
+
+    public List<AclModuleLevelDto> aclModuleTree() {
+        List<SysAclModule> aclModuleList = sysAclModuleMapper.getAllAclModule();
+        List<AclModuleLevelDto> dtoList = Lists.newArrayList();
+        for (SysAclModule aclModule : aclModuleList) {
+            dtoList.add(AclModuleLevelDto.adapt(aclModule));
+        }
+        return aclModuleListToTree(dtoList);
+    }
+
+    public List<AclModuleLevelDto> aclModuleListToTree(List<AclModuleLevelDto> dtoList) {
+        if (CollectionUtils.isEmpty(dtoList)) {
+            return Lists.newArrayList();
+        }
+        // level -> [aclmodule1, aclmodule2, ...] Map<String, List<Object>>
+        Multimap<String, AclModuleLevelDto> levelAclModuleMap = ArrayListMultimap.create();
+        List<AclModuleLevelDto> rootList = Lists.newArrayList();
+
+        for (AclModuleLevelDto dto : dtoList) {
+            levelAclModuleMap.put(dto.getLevel(), dto);
+            if (Levelutil.ROOT.equals(dto.getLevel())) {
+                rootList.add(dto);
+            }
+        }
+        Collections.sort(rootList, aclModuleSeqComparator);
+        transformAclModuleTree(rootList, Levelutil.ROOT, levelAclModuleMap);
+        return rootList;
+    }
+    public void transformAclModuleTree(List<AclModuleLevelDto> dtoList, String level, Multimap<String, AclModuleLevelDto> levelAclModuleMap) {
+        for (int i = 0; i < dtoList.size(); i++) {
+            AclModuleLevelDto dto = dtoList.get(i);
+            String nextLevel = Levelutil.calcuteLevel(level, dto.getId());
+            List<AclModuleLevelDto> tempList = (List<AclModuleLevelDto>) levelAclModuleMap.get(nextLevel);
+            if (CollectionUtils.isNotEmpty(tempList)) {
+                Collections.sort(tempList, aclModuleSeqComparator);
+                dto.setAclModuleList(tempList);
+                transformAclModuleTree(tempList, nextLevel, levelAclModuleMap);
+            }
+        }
+    }
+
+
+
+    //部门树：
     public List<DeptLevelDto> deptTree(){
            //从数据库拿出部门数据 封装进   SysDept
            List<SysDept> depts=sysDeptMapper.getAllDept();
@@ -95,4 +166,17 @@ public class SysTreeService {
         }
     };
 
+    public Comparator<AclModuleLevelDto> aclModuleSeqComparator = new Comparator<AclModuleLevelDto>() {
+        public int compare(AclModuleLevelDto o1, AclModuleLevelDto o2) {
+            return o1.getSeq() - o2.getSeq();
+        }
+    };
+
+    public Comparator<AclDto> aclSeqComparator = new Comparator<AclDto>() {
+        public int compare(AclDto o1, AclDto o2) {
+            return o1.getSeq() - o2.getSeq();
+        }
+    };
 }
+
+

@@ -1,5 +1,6 @@
 package com.wgh.dao;
 
+import com.wgh.beans.PageQuery;
 import com.wgh.model.SysAcl;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,5 +24,7 @@ public interface SysAclMapper {
     int countByNameAndAclModuleId(@Param("aclModuleId") int aclModuleId, @Param("name") String name, @Param("id") Integer id);
 
     List<SysAcl> getAll();
+
+    List<SysAcl> getPageByAclModuleId(@Param("aclModuleId") int aclModuleId, @Param("page") PageQuery page);
 
 }

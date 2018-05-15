@@ -3,10 +3,12 @@ package com.wgh.controller;
 import com.wgh.common.ApplicationContextHelper;
 import com.wgh.common.JsonData;
 import com.wgh.dao.SysAclModuleMapper;
+import com.wgh.dao.SysRoleMapper;
 import com.wgh.exception.ParamException;
 import com.wgh.exception.PermissionException;
 import com.wgh.model.SysAclModule;
 import com.wgh.param.TestVo;
+import com.wgh.service.SysRoleService;
 import com.wgh.util.BeanValidator;
 import com.wgh.util.JsonMapper;
 import lombok.extern.java.Log;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
+
 /**
  * Created by Administrator on 2018/4/20.
  */
@@ -22,6 +26,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/test")
 @Slf4j
 public class Test {
+    @Resource
+    private SysRoleService sysRoleService;
+
+    @RequestMapping("/list.json")
+    @ResponseBody
+    public  JsonData  List(){
+        return JsonData.success(sysRoleService.getAll());
+    }
+
     @RequestMapping("/hello.json")
     @ResponseBody
     public JsonData hello() {

@@ -8,6 +8,7 @@ import com.wgh.param.DeptParam;
 import com.wgh.param.UserParam;
 import com.wgh.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
 @RequestMapping("/sys/user")
 @Slf4j
 public class SysUserController {
+
     @Resource
     private SysUserService sysUserService;
 
@@ -38,6 +40,7 @@ public class SysUserController {
         sysUserService.update(param);
         return JsonData.success();
     }
+
     @RequestMapping("/page.json")
     @ResponseBody
     public JsonData page(@RequestParam("deptId") int deptId, PageQuery pageQuery) {

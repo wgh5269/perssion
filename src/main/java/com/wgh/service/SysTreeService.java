@@ -17,10 +17,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Administrator on 2018/3/25.
@@ -32,9 +30,46 @@ public class SysTreeService {
     @Resource
     private SysAclModuleMapper sysAclModuleMapper;
     @Resource
-    private SysAclMapper sysAclMapper;
+    private SysCoreService sysCoreService;
+    @Resource
+    private  SysAclMapper sysAclMapper;
 
+    // 角色和权限点树
+    public  List<AclModuleLevelDto> roleTree(int roleId){
 
+        //1.取出当前用户已经分配的权限点
+        List<SysAcl> userAclList = sysCoreService.getCurrentUserAclList();
+
+        //2.取出当前角色分配的权限点
+        List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
+
+        Set<Integer> userAclListSet=userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+        Set<Integer> roleAclListSet=roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+
+        List<SysAcl> allList=sysAclMapper.getAll();
+
+        Set<SysAcl> aclSet=new HashSet<>(allList);
+
+        aclSet.addAll(userAclList);
+
+        List<AclDto> aclDtoList= Lists.newArrayList();
+
+        for (SysAcl acl: aclSet) {
+            AclDto dto=AclDto.adapt(acl);
+
+            if (userAclListSet.contains(acl.getId())){
+                dto.setHasAcl(true);
+            }
+            if (roleAclListSet.contains(acl.getId())){
+                dto.setChecked(true);
+            }
+
+            aclDtoList.add(dto);
+
+        }
+
+        return  aclListToTree(aclDtoList);
+    }
 
     //权限树：
     public List<AclModuleLevelDto> aclListToTree(List<AclDto> aclDtoList) {
@@ -49,7 +84,13 @@ public class SysTreeService {
                 moduleIdAclMap.put(acl.getAclModuleId(), acl);
             }
         }
+        bindAclWithOrder(aclModuleLevelList,moduleIdAclMap);
         return aclModuleLevelList;
+    }
+
+    //
+    public void bindAclWithOrder(List<AclModuleLevelDto> aclModuleLevelList,Multimap<Integer, AclDto> moduleIdAclMap ){
+
     }
 
     public List<AclModuleLevelDto> aclModuleTree() {

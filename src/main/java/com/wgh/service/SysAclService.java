@@ -64,5 +64,15 @@ public class SysAclService {
         return dateFormat.format(new Date()) + "_" + (int)(Math.random() * 100);
     }
 
+    public PageResult<SysAcl> getPageByAclModuleId(int aclModuleId, PageQuery page) {
+        BeanValidator.check(page);
+        int count = sysAclMapper.countByAclModuleId(aclModuleId);
+        if (count > 0) {
+            List<SysAcl> aclList = sysAclMapper.getPageByAclModuleId(aclModuleId, page);
+            return PageResult.<SysAcl>builder().data(aclList).total(count).build();
+        }
+        return PageResult.<SysAcl>builder().build();
+    }
+
 
 }

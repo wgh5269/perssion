@@ -21,7 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Created by Administrator on 2018/3/25.
+ * Created by Administrator on 2018/5/16.
  */
 @Service
 public class SysTreeService {
@@ -32,46 +32,34 @@ public class SysTreeService {
     @Resource
     private SysCoreService sysCoreService;
     @Resource
-    private  SysAclMapper sysAclMapper;
+    private SysAclMapper sysAclMapper;
 
     // 角色和权限点树
-    public  List<AclModuleLevelDto> roleTree(int roleId){
-
-        //1.取出当前用户已经分配的权限点
+    public List<AclModuleLevelDto> roleTree(int roleId) {
+        // 1、当前用户已分配的权限点
         List<SysAcl> userAclList = sysCoreService.getCurrentUserAclList();
-
-        //2.取出当前角色分配的权限点
+        // 2、当前角色分配的权限点
         List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
+        // 3、当前系统所有权限点
+        List<AclDto> aclDtoList = Lists.newArrayList();
 
-        Set<Integer> userAclListSet=userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
-        Set<Integer> roleAclListSet=roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+        Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+        Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
 
-        List<SysAcl> allList=sysAclMapper.getAll();
-
-        Set<SysAcl> aclSet=new HashSet<>(allList);
-
-        aclSet.addAll(userAclList);
-
-        List<AclDto> aclDtoList= Lists.newArrayList();
-
-        for (SysAcl acl: aclSet) {
-            AclDto dto=AclDto.adapt(acl);
-
-            if (userAclListSet.contains(acl.getId())){
+        List<SysAcl> allAclList = sysAclMapper.getAll();
+        for (SysAcl acl : allAclList) {
+            AclDto dto = AclDto.adapt(acl);
+            if (userAclIdSet.contains(acl.getId())) {
                 dto.setHasAcl(true);
             }
-            if (roleAclListSet.contains(acl.getId())){
+            if (roleAclIdSet.contains(acl.getId())) {
                 dto.setChecked(true);
             }
-
             aclDtoList.add(dto);
-
         }
-
-        return  aclListToTree(aclDtoList);
+        return aclListToTree(aclDtoList);
     }
 
-    //权限树：
     public List<AclModuleLevelDto> aclListToTree(List<AclDto> aclDtoList) {
         if (CollectionUtils.isEmpty(aclDtoList)) {
             return Lists.newArrayList();
@@ -84,13 +72,22 @@ public class SysTreeService {
                 moduleIdAclMap.put(acl.getAclModuleId(), acl);
             }
         }
-        bindAclWithOrder(aclModuleLevelList,moduleIdAclMap);
+        bindAclsWithOrder(aclModuleLevelList, moduleIdAclMap);
         return aclModuleLevelList;
     }
 
-    //
-    public void bindAclWithOrder(List<AclModuleLevelDto> aclModuleLevelList,Multimap<Integer, AclDto> moduleIdAclMap ){
-
+    public void bindAclsWithOrder(List<AclModuleLevelDto> aclModuleLevelList, Multimap<Integer, AclDto> moduleIdAclMap) {
+        if (CollectionUtils.isEmpty(aclModuleLevelList)) {
+            return;
+        }
+        for (AclModuleLevelDto dto : aclModuleLevelList) {
+            List<AclDto> aclDtoList = (List<AclDto>)moduleIdAclMap.get(dto.getId());
+            if (CollectionUtils.isNotEmpty(aclDtoList)) {
+                Collections.sort(aclDtoList, aclSeqComparator);
+                dto.setAclList(aclDtoList);
+            }
+            bindAclsWithOrder(dto.getAclModuleList(), moduleIdAclMap);
+        }
     }
 
     public List<AclModuleLevelDto> aclModuleTree() {

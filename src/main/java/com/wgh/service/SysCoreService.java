@@ -28,7 +28,6 @@ public class SysCoreService {
     //1.获取当前用户权限列表
     public List<SysAcl> getCurrentUserAclList(){
            int userId= RequestHolder.getCurrentUser().getId();
-
            return getUserAclList(userId);
     }
 

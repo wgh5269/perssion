@@ -6,7 +6,7 @@ import com.wgh.common.JsonData;
 import com.wgh.param.RoleParam;
 import com.wgh.service.SysRoleService;
 import com.wgh.service.SysTreeService;
-import org.apache.ibatis.annotations.Param;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

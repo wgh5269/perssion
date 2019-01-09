@@ -4,11 +4,11 @@ import com.wgh.beans.PageQuery;
 import com.wgh.beans.PageResult;
 import com.wgh.common.JsonData;
 import com.wgh.model.SysUser;
-import com.wgh.param.DeptParam;
+
 import com.wgh.param.UserParam;
 import com.wgh.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

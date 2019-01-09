@@ -9,7 +9,7 @@
         <module name="perssion" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="perssion" target="1.8" />
     </bytecodeTargetLevel>
   </component>

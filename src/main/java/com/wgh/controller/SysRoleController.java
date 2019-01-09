@@ -5,6 +5,7 @@ package com.wgh.controller;
 import com.wgh.common.JsonData;
 import com.wgh.param.RoleParam;
 import com.wgh.service.SysRoleService;
+import com.wgh.service.SysTreeService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ import javax.annotation.Resource;
 public class SysRoleController {
     @Resource
     private SysRoleService sysRoleService;
+
+    @Resource
+    private SysTreeService sysTreeService;
 
     @RequestMapping("role.page")
     public ModelAndView page(){
@@ -52,7 +56,7 @@ public class SysRoleController {
     @RequestMapping("/roleTree.json")
     @ResponseBody
     public  JsonData roleTree(@RequestParam("roleId") int roleId){
-        return JsonData.success();
+        return JsonData.success(sysTreeService.roleTree(roleId));
     }
 
 }

@@ -47,14 +47,14 @@ public class SysUserService {
         user.setOperateTime(new Date());
 
         // TODO: sendEmail
-        Set<String> Receivers=new HashSet<String>();
-        Receivers.add(user.getMail());
-        Mail mail=new Mail("测试注册邮箱验证","如果看到了这个邮件，请点击下面链接进行登陆：http://localhost:8080/sigin.page",Receivers);
-        if(MailUtil.send(mail)) {
-            sysUserMapper.insertSelective(user);
-        }else{
-            throw  new  ParamException("无法发送邮箱");
-        }
+//        Set<String> Receivers=new HashSet<String>();
+//        Receivers.add(user.getMail());
+//        Mail mail=new Mail("测试注册邮箱验证","如果看到了这个邮件，请点击下面链接进行登陆：http://localhost:8080/sigin.page",Receivers);
+//        if(MailUtil.send(mail)) {
+//            sysUserMapper.insertSelective(user);
+//        }else{
+//            throw  new  ParamException("无法发送邮箱");
+//        }
 
         sysUserMapper.insertSelective(user);
     }

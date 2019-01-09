@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
 <head>
     <title>部门管理</title>
     <jsp:include page="/common/backend_common.jsp"/>
